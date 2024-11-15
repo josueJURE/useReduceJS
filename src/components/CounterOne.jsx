@@ -13,24 +13,23 @@ const reducer = (state, action) => {
       return state;
   }
 };
-/* 
-
-the reducer value returns one value which is the new state but
+/* the reducer value returns one value which is the new state but
  for this transition to happen we need the action parameter. It's an
- instruction to the reducer function
-
-*/
+ instruction to the reducer function */
 
 function CounterOne() {
-  useReducer(reducer, initialState);
+ const [count, dispatch] = useReducer(reducer, initialState);
+  /* use useReducer returns the current state which we've called count paired with a dispatch method */
 
   return (
     <div>
-      <button onClick={reducer}>Count {initialState}</button>
-      <button>Decrement</button>
-      <button>Reset</button>
+      <button onClick={()=> dispatch("increment")}>increment count {count}</button>
+      <button onClick={()=> dispatch("decrement")}>decrement counnt {count}</button>
+      <button onClick={()=> dispatch("reset")}>reset count {count}</button>
     </div>
+    /* note that without () => we'd get a 'too many renders" error */
   );
-}
+
+}/*  */
 
 export default CounterOne;
